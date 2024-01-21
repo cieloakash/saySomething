@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const quesRouter = require("./router/question");
 const authRouter = require("./router/auth");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -14,6 +16,7 @@ mongoose
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
@@ -22,6 +25,7 @@ app.use(
   })
 );
 app.use("/api/auth", authRouter);
+app.use("/api", quesRouter);
 
 app.get("/", (req, res) => {
   res.send({ message: "hello" });

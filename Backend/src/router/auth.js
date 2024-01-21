@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    res.send({ message: " Login Succesful ,", userId: user._id });
+    res.send({ message: " Login Succesful ,", userId: user._id, token });
   } catch (e) {
     res.status(500).send({ message: "Something went wrong" });
   }
